@@ -43,5 +43,5 @@ jobs:
         uses: caprover/deploy-from-github@v1.0.1
         with:
           server: '${{ secrets.CAPROVER_SERVER }}'
-          app: ${{ github.ref == 'refs/heads/main' && secrets.MAIN_APP_NAME || secrets.APP_NAME }}
-          token: ${{ github.ref == 'refs/heads/main' && secrets.MAIN_APP_TOKEN || secrets.APP_TOKEN }}
+          app: ${{ github.ref == 'refs/heads/master' && secrets.MAIN_APP_NAME || secrets.APP_NAME }}
+          token: ${{ github.ref == 'refs/heads/master' && secrets.MAIN_APP_TOKEN || secrets.APP_TOKEN }}
