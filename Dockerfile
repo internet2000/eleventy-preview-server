@@ -8,6 +8,7 @@ RUN npm install
 COPY . .
 
 ARG SSH_PRIVATE_KEY
+ENV SSH_PRIVATE_KEY=$SSH_PRIVATE_KEY
 RUN mkdir /root/.ssh/ && \
     echo "$SSH_PRIVATE_KEY" > /root/.ssh/id_rsa && \
     chmod 600 /root/.ssh/id_rsa
