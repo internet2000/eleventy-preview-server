@@ -8,6 +8,7 @@ Features
 * [x] The website data is fetched from a git repository
 * [x] Build 1 template and returns its HTML for the given permalink
 * [x] Web hook to clone or pull the repository
+* [x] Launch eleventy in a child process in order to re-import all modules
 
 ## Usage
 
