@@ -41,6 +41,7 @@ The server is configured using environment variables:
 
 * `PORT` - The port to run the server on (default: 8080)
 * `GITLAB_URL` - The URL of the GitLab server (default: gitlab.com) - should also work with any other git based SaaS
+* `LOCAL_REPO_PATH` - The path to the local repositories (default: `/tmp/previews`)
 
 Here are environment variables defined by this script before building a template:
 
