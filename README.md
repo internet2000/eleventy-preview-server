@@ -9,6 +9,7 @@ Features
 * [x] Build 1 template and returns its HTML for the given permalink
 * [x] Web hook to clone or pull the repository
 * [x] Launch eleventy in a child process in order to re-import all modules
+* [x] Build the website beforehand if needed
 
 ## Usage
 
@@ -24,6 +25,14 @@ npm install
 npm start
 ```
 
+### API
+
+First you will need to pull the website repository:
+
+```
+http://localhost:8080/.pull/{{user}}/{{project}}/
+```
+
 Then you can call the server with the following URL:
 
 ```
@@ -35,6 +44,15 @@ For example, with the following URL:
 ```
 http://localhost:8080/lexoyo/silex_directus-starter/en/ressource-en/?template=/public/all-tags-en.html&directusUrl=https://directus-starter-u465.vm.elestio.app&defaultLanguage=fr&defaultCollection=page
 ```
+
+
+If for some reason you cannot provide the `template` parameter, you can build the website beforehand when you pull the changes:
+
+```
+http://localhost:8080/.pull/{{user}}/{{project}}/?discover=/public/
+```
+
+The `discover` parameter will build the website and discover all the templates in the given folder.
 
 ### Configuration
 
