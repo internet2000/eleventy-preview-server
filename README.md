@@ -1,6 +1,6 @@
 # Eleventy Preview Server
 
-Serves 11ty websites in a 1 page preview mode
+A script that serves your 11ty site by rendering only the requested pages
 
 Features
 
@@ -45,14 +45,42 @@ For example, with the following URL:
 http://localhost:8080/lexoyo/silex_directus-starter/en/ressource-en/?template=/public/all-tags-en.html&directusUrl=https://directus-starter-u465.vm.elestio.app&defaultLanguage=fr&defaultCollection=page
 ```
 
+### Auto-discovery mode
 
-If for some reason you cannot provide the `template` parameter, you can build the website beforehand when you pull the changes:
-
+A website can be previewd in auto-discovery mode by adding the `.auto` prefix to the URL. This will automatically find the template for the URL:
 ```
-http://localhost:8080/.pull/{{user}}/{{project}}/?discover=/public/
+http://localhost:8080/.auto/lexoyo/silex_directus-starter/en/ressource-en/
 ```
 
-The `discover` parameter will build the website and discover all the templates in the given folder.
+For this to work, you need to provide the list of all pages with their corresponding templates to the server. This requires you to add an 11ty plugin to your 11ty configuration file:
+
+```js
+import { PreviewPlugin } from '@internet2000/eleventy-preview-server/plugin'
+module.exports = function(eleventyConfig) {
+  eleventyConfig.addPlugin(PreviewPlugin)
+};
+```
+
+What this does is:
+
+```js
+  // This is the 11ty preview plugin, do not add it to your project, add the plugin instead
+  eleventyConfig.addCollection('preview', async function (collectionApi) {
+    // Output the URL and template of each page
+    // Mark the beginning and end of the collection with an arrow to make it easy to extract the list from the log
+    console.log('➡',
+      JSON.stringify(collectionApi.getAll().map(item => ({
+        url: item.url,
+        inputPath: item.inputPath,
+      }))),
+      '⬅')
+    return collectionApi.getAll()
+  })
+```
+
+When the preview server runs the build, it will extract the list of all pages and their corresponding templates from the log and use it to serve the pages.
+
+As soon as the pages are extracted, the process is killed so that the build never actually runs. 
 
 ### Configuration
 

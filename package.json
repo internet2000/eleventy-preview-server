@@ -1,7 +1,7 @@
 {
-  "name": "test2",
+  "name": "@internet2000/eleventy-preview-server",
   "version": "1.0.1",
-  "description": "",
+  "description": "A script that serves your 11ty site by rendering only the requested pages",
   "main": "lib/index.js",
   "type": "module",
   "scripts": {
