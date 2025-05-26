@@ -10,6 +10,8 @@ Features
 * [x] Web hook to clone or pull the repository
 * [x] Launch eleventy in a child process in order to re-import all modules
 * [x] Build the website beforehand if needed
+* [x] Support env vars in the URL to customize the template
+* [x] Auto-discovery mode to find the template for the URL automatically
 
 ## Usage
 
@@ -44,6 +46,16 @@ For example, with the following URL:
 ```
 http://localhost:8080/lexoyo/silex_directus-starter/en/ressource-en/?template=/public/all-tags-en.html&directusUrl=https://directus-starter-u465.vm.elestio.app&defaultLanguage=fr&defaultCollection=page
 ```
+
+This will render the template `/public/all-tags-en.html` for the permalink `/en/ressource-en/` of the project `lexoyo/silex_directus-starter` and return the HTML.
+
+You can also add environment variables to the URL to customize the template, for example:
+
+```
+http://localhost:8080/lexoyo/silex_directus-starter/DRAFT=true/en/ressource-en/?template=/public/all-tags-en.html&directusUrl=https://directus-starter-u465.vm.elestio.app&defaultLanguage=fr&defaultCollection=page
+```
+
+This will set the environment variable `DRAFT` to `true` for the template rendering and remove the `DRAFT` part from the permalink, so that the template can be rendered correctly.
 
 ### Auto-discovery mode
 
