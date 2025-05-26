@@ -57,6 +57,8 @@ http://localhost:8080/lexoyo/silex_directus-starter/DRAFT=true/en/ressource-en/?
 
 This will set the environment variable `DRAFT` to `true` for the template rendering and remove the `DRAFT` part from the permalink, so that the template can be rendered correctly.
 
+In case you need to add `/` in the value, you can encodeURIComponent the value, it will be decoded
+
 ### Auto-discovery mode
 
 A website can be previewd in auto-discovery mode by adding the `.auto` prefix to the URL. This will automatically find the template for the URL:
