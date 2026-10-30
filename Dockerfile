@@ -6,6 +6,8 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
+# node_modules comes from the CI tarball: rebuild native modules for this image's glibc
+RUN npm rebuild sqlite3
 
 ARG SSH_PRIVATE_KEY
 ENV SSH_PRIVATE_KEY=$SSH_PRIVATE_KEY
